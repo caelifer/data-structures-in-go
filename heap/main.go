@@ -1,8 +1,9 @@
 package main
 
 import (
-	"data-structures/heap/heap"
 	"fmt"
+
+	"github.com/caelifer/data-structures-in-go/heap/heap"
 )
 
 type IntNode int
