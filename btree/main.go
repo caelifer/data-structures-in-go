@@ -1,6 +1,6 @@
 package main
 
-import "data-structures/btree/tree"
+import "github.com/caelifer/data-structures-in-go/btree/tree"
 
 type IntNode int
 
