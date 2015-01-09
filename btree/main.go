@@ -1,6 +1,10 @@
 package main
 
-import "github.com/caelifer/data-structures-in-go/btree/tree"
+import (
+	"fmt"
+
+	"github.com/caelifer/data-structures-in-go/btree/tree"
+)
 
 type IntNode int
 
@@ -25,7 +29,9 @@ func main() {
 	intBT.Insert(IntNode(4))
 	intBT.Insert(IntNode(6))
 	intBT.Insert(IntNode(3))
-	intBT.Walk()
+	intBT.Walk(func(n tree.Node) {
+		fmt.Println(n)
+	})
 
 	stringBT := tree.New()
 	stringBT.Insert(StringNode("ello"))
@@ -35,5 +41,7 @@ func main() {
 	stringBT.Insert(StringNode("cy"))
 	stringBT.Insert(StringNode("z"))
 	stringBT.Insert(StringNode("j"))
-	stringBT.Walk()
+	stringBT.Walk(func(n tree.Node) {
+		fmt.Println(n)
+	})
 }

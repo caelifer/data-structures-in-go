@@ -1,14 +1,14 @@
 package tree
 
-import "fmt"
-
 type Node interface {
 	Less(other Node) bool
 }
 
+type CustomFn func(Node)
+
 type Interface interface {
 	Insert(Node)
-	Walk()
+	Walk(CustomFn)
 }
 
 type binaryTree struct {
@@ -35,12 +35,12 @@ func (t *binaryTree) Insert(node Node) {
 	}
 }
 
-func (t *binaryTree) Walk() {
+func (t *binaryTree) Walk(fn CustomFn) {
 	if t.node == nil {
 		return
 	}
 
-	t.left.Walk()
-	fmt.Println(t.node)
-	t.right.Walk()
+	t.left.Walk(fn)
+	fn(t.node)
+	t.right.Walk(fn)
 }
