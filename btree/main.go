@@ -20,6 +20,10 @@ func (n StringNode) Less(other tree.Node) bool {
 	return n < other.(StringNode)
 }
 
+func Println(n tree.Node) {
+	fmt.Println(n)
+}
+
 func main() {
 	intBT := tree.New()
 	intBT.Insert(IntNode(5))
@@ -29,9 +33,7 @@ func main() {
 	intBT.Insert(IntNode(4))
 	intBT.Insert(IntNode(6))
 	intBT.Insert(IntNode(3))
-	intBT.Walk(func(n tree.Node) {
-		fmt.Println(n)
-	})
+	intBT.Walk(Println)
 
 	stringBT := tree.New()
 	stringBT.Insert(StringNode("ello"))
@@ -41,7 +43,5 @@ func main() {
 	stringBT.Insert(StringNode("cy"))
 	stringBT.Insert(StringNode("z"))
 	stringBT.Insert(StringNode("j"))
-	stringBT.Walk(func(n tree.Node) {
-		fmt.Println(n)
-	})
+	stringBT.Walk(Println)
 }
