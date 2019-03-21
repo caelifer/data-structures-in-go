@@ -50,7 +50,7 @@ func (h *genHeap) Push(n Node) {
 }
 
 func (h *genHeap) Pop() Node {
-	sz := h.getSentinel().val()
+	sz := h.Size()
 
 	if sz > 0 {
 		val := h.data[1] // get value at the head
@@ -125,7 +125,7 @@ func (h *genHeap) siftdown(max int) {
 
 // swap() safely swaps elements at provided indexes
 func (h *genHeap) swap(a, b int) {
-	sz := h.getSentinel().val()
+	sz := h.Size()
 
 	if a == b || b < 1 || b > sz || a < 1 || a > sz {
 		return // NOOP
@@ -137,7 +137,7 @@ func (h *genHeap) swap(a, b int) {
 func (h *genHeap) shrink() {
 	// our strategy to release memory if we are utilizing less then 50% of
 	// allocated memory
-	sz := h.getSentinel().val() + 1 // +1 is to account for sentinel
+	sz := h.Size() + 1 // +1 is to account for sentinel
 	if cap(h.data)/sz > 2 {
 		// Re-allocate and reassign. Let GC to take care of the
 		// old slice and backing store
