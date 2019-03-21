@@ -52,25 +52,25 @@ func (h *genHeap) Push(n Node) {
 func (h *genHeap) Pop() Node {
 	sz := h.Size()
 
-	if sz > 0 {
-		val := h.data[1] // get value at the head
-
-		h.swap(1, sz) // swap head with the last element
-
-		// decrement elem counts
-		h.getSentinel().decr()
-
-		// Sort heap from head down
-		h.siftdown(h.getSentinel().val())
-
-		// Be nice to memory
-		h.shrink()
-
-		return val
+	if sz == 0 {
+		// return nil if heap is empty
+		return nil
 	}
 
-	// return nil if heap is empty
-	return nil
+	val := h.data[1] // get value at the head
+
+	h.swap(1, sz) // swap head with the last element
+
+	// decrement elem counts
+	h.getSentinel().decr()
+
+	// Sort heap from head down
+	h.siftdown(h.getSentinel().val())
+
+	// Be nice to memory
+	h.shrink()
+
+	return val
 }
 
 func (h *genHeap) Size() int {
@@ -142,7 +142,6 @@ func (h *genHeap) shrink() {
 		// Re-allocate and reassign. Let GC to take care of the
 		// old slice and backing store
 		h.data = append([]Node{}, h.data[:sz]...)
-
 	}
 }
 
@@ -150,8 +149,8 @@ func (h *genHeap) shrink() {
 type sentinel int
 
 func (s sentinel) Less(other Node) bool {
-	// Dummy interface
-	return true
+	// Dummy implementation to confirm with the Node interface.
+	return false
 }
 
 func (s sentinel) val() int {
