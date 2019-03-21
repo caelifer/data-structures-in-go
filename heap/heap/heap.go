@@ -24,7 +24,7 @@ type Interface interface {
 	siftdown(int)
 }
 
-// Generic *genHeap implimentation
+// Generic heap.Interface implimentation
 type genHeap struct {
 	data []Node
 }
