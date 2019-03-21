@@ -74,7 +74,7 @@ func (h *genHeap) Pop() Node {
 }
 
 func (h *genHeap) Size() int {
-	return len(h.data)
+	return h.getSentinel().val()
 }
 
 // non-public interface
